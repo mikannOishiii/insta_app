@@ -1,24 +1,20 @@
-# README
+# POTEPAN サブ課題 - インスタグラムのアプリケーション
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+これは、POTEPAN CAMP のサブ課題として作られたサンプルアプリケーションです。   
+[*POTEPAN CAMP*](https://camp.potepan.com/)
 
-Things you may want to cover:
+## 公開用URL
 
-* Ruby version
+[heroku](https://insta-app-mikanntaroh.herokuapp.com/)
 
-* System dependencies
+## ブランチの説明
 
-* Configuration
+[master] Rails newした直後のマスターブランチです。
+[develop] mikanntarohの開発用マスターブランチです。
+[その他] mikanntarohの開発用ブランチです。
 
-* Database creation
+## 以下、課題終了時に記入
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## 自分が苦労した点
+## 学んだ点
+## 自慢したい・相談したい点
