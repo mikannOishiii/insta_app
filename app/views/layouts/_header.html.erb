@@ -6,7 +6,7 @@
       <% if logged_in? %>
         <li><%= link_to "検索フォーム", '#' %></li>
         <li><%= link_to "Activity", '#' %></li>
-        <li><%= link_to "MY PAGE", user_path(@user) %></li>
+        <li><%= link_to "MY PAGE", current_user %></li>
         <li><%= link_to "ログアウト", logout_path, method: :delete %></li>
       <% else %>
         <li><%= link_to "ログイン", accounts_login_path %></li>
