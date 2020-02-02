@@ -1,3 +1,9 @@
 michael:
+  name: michael example
   user_name: michael
+  password_digest: <%= User.digest('password') %>
+
+archer:
+  name: Archer example
+  user_name: archer
   password_digest: <%= User.digest('password') %>
