@@ -38,7 +38,7 @@
       <%= f.submit "送信する", class: "btn btn-primary" %>
     <% end %>
   </div>
-  <%= link_to "パスワード変更", edit_user_path %>
+  <%= link_to "パスワード変更", accounts_password_change_path %>
 
   <%= link_to "アカウント停止", @user, method: :delete,
                                   data: { confirm: "You sure?" } %> 

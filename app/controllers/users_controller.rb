@@ -41,6 +41,12 @@ class UsersController < ApplicationController
     redirect_to root_url
   end
 
+  def password_change
+  end
+
+  def password_update
+  end
+
   private
 
     def user_params
