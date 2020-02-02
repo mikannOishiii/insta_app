@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
-
-  get 'sessions/new'
-
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   root 'static_pages#home'
   get  '/terms', to: 'static_pages#terms'
   get  '/accounts/signup',  to: 'users#new'
@@ -13,4 +11,8 @@ Rails.application.routes.draw do
 
   get  '/accounts/password/change',  to: 'users#password_change'
   post  '/password/change',  to: 'users#password_update'
+
+  devise_scope :user do
+    delete 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session
+  end
 end
