@@ -13,3 +13,10 @@ User.create!(name:  "Example User",
                password:              password,
                password_confirmation: password)
 end
+
+users = User.order(:created_at).take(6)
+50.times do
+  image_path = File.join(Rails.root, "test/fixtures/images/sample.jpg")
+  text = Faker::Lorem.sentence(5)
+  users.each { |user| user.posts.create!(picture: File.new(image_path), text: text) }
+end

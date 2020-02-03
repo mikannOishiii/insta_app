@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_many :posts, dependent: :destroy
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :omniauthable, omniauth_providers: %i[facebook]
@@ -27,6 +28,12 @@ class User < ApplicationRecord
       # uncomment the line below to skip the confirmation emails.
       # user.skip_confirmation!
     end
+  end
+
+  # 試作feedの定義
+  # 完全な実装は次章の「ユーザーをフォローする」を参照
+  def feed
+    Post.where("user_id = ?", id)
   end
 
   # ランダムなトークンを返す

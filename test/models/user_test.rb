@@ -5,6 +5,8 @@ class UserTest < ActiveSupport::TestCase
   def setup
     @user = User.new(name: "Example User", user_name: "User Name 001",
               password: "foobar", password_confirmation: "foobar")
+    extend ActionDispatch::TestProcess
+    @uploaded_file = fixture_file_upload('images/sample.jpg', 'image/jpeg')
   end
 
   test "should be valid" do
@@ -45,5 +47,13 @@ class UserTest < ActiveSupport::TestCase
   test "password should have a minimum length" do
     @user.password = @user.password_confirmation = "a" * 5
     assert_not @user.valid?
+  end
+
+  test "associated posts should be destroyed" do
+    @user.save
+    @user.posts.create!(picture: @uploaded_file)
+    assert_difference 'Post.count', -1 do
+      @user.destroy
+    end
   end
 end

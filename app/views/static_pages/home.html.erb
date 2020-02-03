@@ -1,13 +1,27 @@
-<div class="center jumbotron">
-  <h1>Welcome to the Sample App</h1>
+<% if logged_in? %>
+  <section class="user_info">
+    <%= render 'shared/user_info' %>
+  </section>
+  <section class="post_form">
+    <%= render 'shared/post_form' %>
+  </section>
+  <section class="feed">
+    <h3>Micropost Feed</h3>
+    <%= render 'shared/feed' %>
+  </section>
+<% else %>
+  <div class="center jumbotron">
+    <h1>Welcome to the Sample App</h1>
 
-  <h2>
-    This is the home page for the
-    <a href="https://railstutorial.jp/">Ruby on Rails Tutorial</a>
-    sample application.
-  </h2>
+    <h2>
+      This is the home page for the
+      <a href="https://railstutorial.jp/">Ruby on Rails Tutorial</a>
+      sample application.
+    </h2>
 
-  <%= link_to "Sign up now!", '#', class: "btn btn-lg btn-primary" %>
-</div>
+    <%= link_to "Sign up now!", '#', class: "btn btn-lg btn-primary" %>
+  </div>
 
-<%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path %>
+  <%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path %>
+
+<% end %>
