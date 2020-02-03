@@ -1,4 +1,7 @@
 <% if logged_in? %>
+  <section class="user_post_link">
+  <%= link_to "画像を投稿する", create_path %>
+  </section>
   <section class="user_info">
     <%= render 'shared/user_info' %>
   </section>

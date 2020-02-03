@@ -3,13 +3,19 @@ class PostsController < ApplicationController
   before_action :correct_user,   only: :destroy
 
   def show
+    @user = Post.find(params[:id]).user
+    @post = @user.posts.find(params[:id])
+  end
+
+  def new
+    @post = current_user.posts.build
   end
 
   def create
     @post = current_user.posts.build(post_params)
     if @post.save
       flash[:success] = "Micropost created!"
-      redirect_to root_url
+      redirect_to @post
     else
       @feed_items = []
       render 'static_pages/home'
