@@ -1,5 +1,5 @@
-<% provide(:title, "Edit user") %>
-<h1>Update your profile</h1>
+<% provide(:title, "プロフィールを編集") %>
+<h1>プロフィールを編集</h1>
 
 <div class="row">
 
@@ -11,17 +11,17 @@
     <%= form_for(@user) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
 
-      <%= f.label :name %>
-      <%= f.text_field :name, class: 'form-control' %>
-
       <%= f.label :user_name %>
       <%= f.text_field :user_name, class: 'form-control' %>
+
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control' %>
 
       <%= f.label :website %>
       <%= f.text_field :website, class: 'form-control' %>
 
       <%= f.label :pr_text %>
-      <%= f.text_field :pr_text, class: 'form-control' %>
+      <%= f.text_area :pr_text, class: 'form-control' %>
 
       <div>非公開情報</div>
 
@@ -29,10 +29,11 @@
       <%= f.email_field :email, class: 'form-control' %>
 
       <%= f.label :phone %>
-      <%= f.text_field :phone, class: 'form-control' %>
+      <%= f.telephone_field :phone, class: 'form-control' %>
 
       <%= f.label :gender %>
-      <%= f.text_field :gender, class: 'form-control' %>
+      <%= f.select :gender, [["男性", "男性"], ["女性", "女性"],  ["答えたくない", "答えたくない"] ],
+                    :prompt => "選択してください", class: 'form-control' %>
     
 
       <%= f.submit "送信する", class: "btn btn-primary" %>

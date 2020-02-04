@@ -14,5 +14,14 @@ module InstaApp
 
     # 認証トークンをremoteフォームに埋め込む
     config.action_view.embed_authenticity_token_in_remote_forms = true
+
+    # 日本語
+    config.i18n.default_locale = :ja
+
+    # 表示TimeZone
+    config.time_zone = 'Tokyo'
+    
+    # DB読み書きをlocal(Tokyo)にする
+    config.active_record.default_timezone = :local
   end
 end

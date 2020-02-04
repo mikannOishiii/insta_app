@@ -14,7 +14,8 @@ Rails.application.routes.draw do
   delete '/logout',  to: 'sessions#destroy'
 
   get  '/accounts/password/change',  to: 'users#password_change'
-  post  '/password/change',  to: 'users#password_update'
+  post  '/accounts/password/change',  to: 'users#password_update'
+  patch '/accounts/password/change', to: 'users#password_update'
 
   devise_scope :user do
     delete 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session

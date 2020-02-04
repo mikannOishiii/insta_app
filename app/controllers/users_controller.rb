@@ -29,7 +29,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update_attributes(profile_params)
-      flash[:success] = "Profile updated"
+      flash[:success] = "プロフィールを更新しました。"
       redirect_to @user
     else
       render 'edit'
@@ -38,7 +38,7 @@ class UsersController < ApplicationController
 
   def destroy
     User.find(params[:id]).destroy
-    flash[:success] = "User deleted"
+    flash[:success] = "アカウントを削除しました。"
     redirect_to root_url
   end
 
@@ -48,6 +48,17 @@ class UsersController < ApplicationController
 
   def password_update
     @user = current_user
+    if params[:user][:password].empty? or params[:user][:old_password].empty?
+      @user.errors.add(:password, :blank)
+      render 'password_change'
+    # 入力した旧PWがDBに保存されているパスワードと一致し、
+    # 新PWと確認PWに同じ値が入っていれば、更新する
+    elsif @user.authenticate(params[:user][:old_password]) && @user.update_attributes(password_params)
+      flash[:success] = "パスワードを変更しました。"
+      redirect_to @user
+    else
+      render 'password_change'
+    end
   end
 
   private
@@ -60,6 +71,10 @@ class UsersController < ApplicationController
     def profile_params
       params.require(:user).permit(:name, :user_name, :website, :pr_text,
                                    :email, :phone, :gender)
+    end
+
+    def password_params
+      params.require(:user).permit(:password, :password_confirmation)
     end
 
     # beforeアクション
