@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: [:edit, :update, :destroy]
+  before_action :logged_in_user, only: [:edit, :update, :destroy, :fav_lists]
   before_action :correct_user,   only: [:edit, :update, :destroy]
 
   def show
@@ -60,6 +60,14 @@ class UsersController < ApplicationController
     else
       render 'password_change'
     end
+  end
+
+  def fav_lists
+    @user  = User.find(params[:id])
+    @users = @user.fav_lists.paginate(page: params[:page])
+    @posts = @user.posts.paginate(page: params[:page])
+    @post = @posts.find_by(params[:id])
+    render 'show_fav_lists'
   end
 
   private

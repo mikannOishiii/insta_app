@@ -1,0 +1,8 @@
+<h3>お気に入りリスト</h3>
+<%= @user.fav_lists.count %>投稿ををお気に入り
+ <% if @users.any? %>
+    <ul class="users follow">
+      <%= render @users %>
+    </ul>
+    <%= will_paginate %>
+  <% end %>

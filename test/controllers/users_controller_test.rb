@@ -50,4 +50,9 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to root_url
   end
 
+  test "should redirect favorite when not logged in" do
+    get fav_lists_user_path(@user)
+    assert_redirected_to accounts_login_url
+  end
+
 end
