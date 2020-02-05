@@ -1,0 +1,7 @@
+<div id="favorite_form">
+  <% if current_user.like?(@post) %>
+    <%= render 'shared/unlike' %>
+  <% else %>
+    <%= render 'shared/like' %>
+  <% end %>
+</div>

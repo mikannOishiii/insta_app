@@ -30,3 +30,9 @@ following = users[2..50]
 followers = users[3..40]
 following.each { |followed| user.follow(followed) }
 followers.each { |follower| follower.follow(user) }
+
+# お気に入り
+posts = Post.all
+user  = User.first
+fav_posts = posts[2..5]
+fav_posts.each { |fav_post| user.like(fav_post) }

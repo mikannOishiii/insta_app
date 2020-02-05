@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   post '/signup',  to: 'users#create'
   resources :users do
     member do
-      get :following, :followers
+      get :fav_lists
     end
   end
   get    '/accounts/login',   to: 'sessions#new'
@@ -23,4 +23,5 @@ Rails.application.routes.draw do
   resources :posts, only: [:new, :show, :create, :destroy]
   get    '/create',   to: 'posts#new'
   resources :relationships,       only: [:create, :destroy]
+  resources :favorites, only: [:create, :destroy]
 end

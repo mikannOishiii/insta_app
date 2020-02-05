@@ -1,5 +1,8 @@
 class User < ApplicationRecord
+  # favorites
   has_many :posts, dependent: :destroy
+  has_many :favorites, dependent: :destroy
+  has_many :fav_lists, through: :favorites, source: :post
   has_many :active_relationships, class_name:  "Relationship",
                                   foreign_key: "follower_id",
                                   dependent:   :destroy
@@ -8,6 +11,7 @@ class User < ApplicationRecord
                                   dependent:   :destroy
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
+  
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :omniauthable, omniauth_providers: %i[facebook]
@@ -65,5 +69,20 @@ class User < ApplicationRecord
   # 現在のユーザーがフォローしてたらtrueを返す
   def following?(other_user)
     following.include?(other_user)
+  end
+
+  # 投稿をお気に入りする
+  def like(post)
+    favorites.create(post_id: post.id)
+  end
+
+  # お気に入りを解除する
+  def unlike(post)
+    favorites.find_by(post_id: post.id).destroy
+  end
+
+  # お気に入りされていたらtrueを返す
+  def like?(post)
+    fav_lists.include?(post)
   end
 end

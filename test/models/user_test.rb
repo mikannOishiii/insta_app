@@ -85,4 +85,15 @@ class UserTest < ActiveSupport::TestCase
       assert_not michael.feed.include?(post_unfollowed)
     end
   end
+
+  test "should like and unlike a post" do
+    michael = users(:michael)
+    ants  = posts(:ants)
+    assert_not michael.like?(ants)
+    michael.like(ants)
+    assert michael.like?(ants)
+    assert michael.fav_lists.include?(ants)
+    michael.unlike(ants)
+    assert_not michael.like?(ants)
+  end
 end

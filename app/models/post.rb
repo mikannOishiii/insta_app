@@ -1,4 +1,6 @@
 class Post < ApplicationRecord
+  has_many :favorites
+  has_many :users, through: :favorites
   belongs_to :user
   default_scope -> { order(created_at: :desc) }
   mount_uploader :picture, PictureUploader

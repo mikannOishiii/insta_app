@@ -8,4 +8,7 @@
                                     data: { confirm: "本当に削除しますか?" } %>
     <% end %>
   </span>
+  <section class="favorite">
+    <%= render 'shared/favorite_form' if logged_in? %>
+  </section>
 </li>
