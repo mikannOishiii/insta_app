@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @posts = @user.posts.paginate(page: params[:page])
-    @post = @posts.find_by(params[:id])
+    # @post = Post.find(params[:id])
   end
 
   def new
@@ -64,9 +64,8 @@ class UsersController < ApplicationController
 
   def fav_lists
     @user  = User.find(params[:id])
-    @users = @user.fav_lists.paginate(page: params[:page])
-    @posts = @user.posts.paginate(page: params[:page])
-    @post = @posts.find_by(params[:id])
+    @posts = @user.fav_lists.paginate(page: params[:page])
+    # @post = @posts.find_by(params[:id])
     render 'show_fav_lists'
   end
 

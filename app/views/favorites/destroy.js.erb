@@ -1,2 +1,1 @@
-$("#favorite_form").html("<%= escape_javascript(render('users/like')) %>");
-$("#fav_lists").html('<%= @user.fav_lists.count %>');
+$("#favorite_form").html("<%= escape_javascript(render('shared/like'), locals(post: post, f: @f)) %>");

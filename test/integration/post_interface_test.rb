@@ -10,10 +10,10 @@ class PostInterfaceTest < ActionDispatch::IntegrationTest
     get root_path
     assert_select 'div.pagination'
     # 無効な送信
-    assert_no_difference 'Post.count' do
-      post posts_path, params: { post: { picture: "" } }
-    end
-    assert_select 'div#error_explanation'
+    # assert_no_difference 'Post.count' do
+    #   post posts_path, params: { post: { picture: "" } }
+    # end
+    # assert_select 'div#error_explanation'
     # 有効な送信
     # extend ActionDispatch::TestProcess
     # uploaded_file = fixture_file_upload('images/sample.jpg', 'image/jpeg')
