@@ -5,6 +5,7 @@ class PostsController < ApplicationController
   def show
     @user = Post.find(params[:id]).user
     @post = @user.posts.find(params[:id])
+    @comments = @user.comments.paginate(page: params[:page])
   end
 
   def new

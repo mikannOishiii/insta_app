@@ -3,6 +3,7 @@ require 'test_helper'
 class PostInterfaceTest < ActionDispatch::IntegrationTest
   def setup
     @user = users(:michael)
+    @post = posts(:ants)
   end
 
   test "micropost interface" do
@@ -33,4 +34,5 @@ class PostInterfaceTest < ActionDispatch::IntegrationTest
     get user_path(users(:archer))
     assert_select 'a', text: 'delete', count: 0
   end
+
 end

@@ -36,3 +36,10 @@ posts = Post.all
 user  = User.first
 fav_posts = posts[2..5]
 fav_posts.each { |fav_post| user.like(fav_post) }
+
+# コメント
+users = User.all
+comment_users = users[2..6]
+post = Post.first
+content = Faker::Lorem.sentence(5)
+comment_users.each { |user| user.comments.create!(content: content, post_id: post.id) }

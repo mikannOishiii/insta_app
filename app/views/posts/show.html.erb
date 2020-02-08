@@ -5,4 +5,12 @@ Posted <%= time_ago_in_words(@post.created_at) %> ago.
       <%= link_to "delete", @post, method: :delete,
                                     data: { confirm: "本当に削除しますか?" } %>
     <% end %>
-
+<div class="">
+  <% if @user.comments.any? %>
+    <h3>Comments (<%= @user.comments.count %>)</h3>
+    <ol class="comments">
+      <%= render @comments %>
+    </ol>
+    <%= will_paginate @comments %>
+  <% end %>
+</div>

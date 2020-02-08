@@ -96,4 +96,13 @@ class UserTest < ActiveSupport::TestCase
     michael.unlike(ants)
     assert_not michael.like?(ants)
   end
+
+  test "associated microposts should be destroyed" do
+    malory = users(:malory)
+    ants  = posts(:ants)
+    malory.comments.create!(content: "Lorem ipsum", post_id: ants.id )
+    assert_difference 'Comment.count', -1 do
+      malory.destroy
+    end
+  end
 end
