@@ -1,7 +1,7 @@
 <section class="comment_form">
-  <%= render 'comment_form' %>
+  <%= render 'comment_form', post: @post, comment: @comment %>
 </section>
-<% if @comments.try(:any?) %>
+<% if @comments.any? %>
   <h3>Comments (<%= @comments.count %>)</h3>
   <ol class="comments">
     <%= render @comments %>

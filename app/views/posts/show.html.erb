@@ -6,8 +6,8 @@ Posted <%= time_ago_in_words(@post.created_at) %> ago.
                                     data: { confirm: "本当に削除しますか?" } %>
     <% end %>
 <div class="">
-  <% if @user.comments.any? %>
-    <h3>Comments (<%= @user.comments.count %>)</h3>
+  <% if @post.comments.any? %>
+    <h3>Comments (<%= @post.comments.count %>)</h3>
     <ol class="comments">
       <%= render @comments %>
     </ol>

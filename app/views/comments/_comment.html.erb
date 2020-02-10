@@ -6,7 +6,9 @@
     Posted <%= time_ago_in_words(comment.created_at) %> ago.
   </span>
   <% if current_user?(comment.user) %>
-      <%= link_to "delete", comment, method: :delete,
-                                       data: { confirm: "You sure?" } %>
+      <%= link_to "delete",
+          post_comment_path(comment.post, comment), 
+          method: :delete,
+          data: { confirm: 'Are you sure?' } %>
     <% end %>
 </li>
