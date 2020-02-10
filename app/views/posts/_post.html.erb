@@ -9,12 +9,6 @@
     <% end %>
   </span>
   <section class="favorite">
-    <div id="favorite_form">
-      <% if current_user.like?(post) %>
-        <%= render partial: 'shared/unlike', locals:{ post: post, f: @f } %>
-      <% else %>
-        <%= render partial: 'shared/like', locals:{ post: post, f: @f } %>
-      <% end %>
-    </div>
+    <%= render 'users/favorite', post: post %>
   </section>
 </li>
