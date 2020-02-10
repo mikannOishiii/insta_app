@@ -3,20 +3,23 @@ class FavoritesController < ApplicationController
 
   def create
     @post = Post.find(params[:post_id])
-    current_user.like(@post)
-    respond_to do |format|
-      format.html { redirect_back(fallback_location: root_path) }
-      format.js
+    unless current_user.like?(@post)
+      current_user.like(@post)
+      respond_to do |format|
+        format.html { redirect_back(fallback_location: root_path) }
+        format.js
+      end
     end
   end
 
   def destroy
     @post = Favorite.find(params[:id]).post
-    current_user.unlike(@post)
-    respond_to do |format|
-      format.html { redirect_back(fallback_location: root_path) }
-      format.js
+    if current_user.like?(@post)
+      current_user.unlike(@post)
+      respond_to do |format|
+        format.html { redirect_back(fallback_location: root_path) }
+        format.js
+      end
     end
   end
-  
 end
