@@ -21,7 +21,7 @@ Rails.application.routes.draw do
     delete 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session
   end
   resources :posts do
-    resources :comments, only: [:index, :create]
+    resources :comments, only: [:index, :create, :destroy]
   end
   get    '/create',   to: 'posts#new'
   resources :relationships,       only: [:create, :destroy]
