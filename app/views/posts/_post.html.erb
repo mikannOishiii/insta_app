@@ -9,6 +9,6 @@
     <% end %>
   </span>
   <section class="favorite">
-    <%= render 'shared/favorite_form' if logged_in? %>
+    <%= render 'users/favorite', post: post %>
   </section>
 </li>

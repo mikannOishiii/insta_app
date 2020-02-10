@@ -1,2 +1,1 @@
-$("#favorite_form").html("<%= escape_javascript(render('users/unlike')) %>");
-$("#fav_lists").html('<%= @user.fav_lists.count %>');
+$("#favorite_form").html("<%= escape_javascript(render('users/favorite', post: @post)) %>");
