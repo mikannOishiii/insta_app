@@ -22,11 +22,11 @@ class FavoriteIngTest < ActionDispatch::IntegrationTest
     end
   end
 
-  # test "should like a post with Ajax" do
-  #   assert_difference '@user.favorites.count', 1 do
-  #     post favorites_path, xhr: true, params: { post_id: @post.id }
-  #   end
-  # end
+  test "should like a post with Ajax" do
+    assert_difference '@user.favorites.count', 1 do
+      post favorites_path, xhr: true, params: { post_id: @post.id }
+    end
+  end
 
   test "should unlike a post the standard way" do
     @user.like(@post)
