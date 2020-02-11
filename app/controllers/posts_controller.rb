@@ -29,6 +29,12 @@ class PostsController < ApplicationController
     redirect_to request.referrer || root_url
   end
 
+
+  def explore
+    #Viewのformで取得したパラメータをモデルに渡す
+    @posts = Post.explore(params[:explore])
+  end
+
   private
 
     def post_params

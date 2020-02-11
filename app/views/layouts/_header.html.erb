@@ -4,7 +4,7 @@
     <nav>
       <ul class="nav navbar-nav navbar-right">
       <% if logged_in? %>
-        <li><%= link_to "検索フォーム", '#' %></li>
+        <li><%= render 'layouts/explore_form' %></li>
         <li><%= link_to "Activity", '#' %></li>
         <li><%= link_to "MY PAGE", current_user %></li>
         <li><%= link_to "ログアウト", logout_path, method: :delete %></li>

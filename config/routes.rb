@@ -26,4 +26,6 @@ Rails.application.routes.draw do
   get    '/create',   to: 'posts#new'
   resources :relationships,       only: [:create, :destroy]
   resources :favorites, only: [:create, :destroy]
+
+  get '/explore', to: 'posts#explore'
 end

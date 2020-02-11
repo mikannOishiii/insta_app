@@ -1,0 +1,4 @@
+<%= form_tag explore_path, method: :get do %>
+  <%= text_field_tag :explore, params[:explore] %>
+  <%= submit_tag 'Explore', class: "btn", name: nil %>
+<% end %>

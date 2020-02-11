@@ -9,6 +9,14 @@ class Post < ApplicationRecord
   validates :picture, presence: true
   validate  :picture_size
 
+  def self.explore(explore)
+    if explore
+      Post.where(['text LIKE ?', "%#{explore}%"])
+    else
+      Post.all
+    end
+  end
+
   private
 
     # アップロードされた画像のサイズをバリデーションする
