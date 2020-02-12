@@ -1,5 +1,19 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import 'font-awesome-sprockets';
+@import 'font-awesome';
+
+// 変数の定義
+// min-width
+$breakpoints: (
+  'sm': 'screen and (min-width: 400px)',
+  'md': 'screen and (min-width: 768px)',
+  'lg': 'screen and (min-width: 1000px)',
+  'xl': 'screen and (min-width: 1200px)',
+) !default;
+
+$gray-medium-light: #eaeaea;
+
 
 /* mixins, variables, etc. */
 @mixin box_sizing {
@@ -8,7 +22,12 @@
   box-sizing:         border-box;
 }
 
-$gray-medium-light: #eaeaea;
+@mixin mq($breakpoint: md) {
+  @media #{map-get($breakpoints, $breakpoint)} {
+    @content;
+  }
+}
+
 
 /* universal */
 
@@ -75,6 +94,18 @@ p {
     text-decoration: none;
   }
 }
+
+.form_search {
+  @include mq(sm) {
+    display: none;
+  }
+  @include mq() {
+    display: block;
+  }
+
+}
+
+  
 
 /* footer */
 

@@ -1,19 +1,28 @@
-<header class="navbar navbar-fixed-top navbar-inverse">
-  <div class="container">
-    <%= link_to "mikanntarohのInsta App", root_path, id: "logo" %>
-    <nav>
+<header class="navbar navbar-fixed-top navbar-light bg-warning">
+  <div class="container">    
+    <nav class="">
+      <div class="navbar-logo navbar-left">
+        <%= link_to "みかん太郎のInsta App", root_path, id: "logo" %>
+      </div>
+      <%= render 'layouts/explore_form' %>
       <ul class="nav navbar-nav navbar-right">
       <% if logged_in? %>
-        <li><%= render 'layouts/explore_form' %></li>
-        <li><%= link_to '通知', notifications_path, class:"btn"  %>
-          <% if unchecked_notifications.any? %>
-            <i class="fa fa-circle notification-circle"></i>
+        <li>
+          <%= link_to notifications_path, class:"btn" do %>
+            <i class="fa fa-heart fa-2x"></i>
+            <% if unchecked_notifications.any? %>
+              <i class="fa fa-heart fa-2x"></i>
+            <% end %>
+          <% end %> 
+        </li>
+        <li>
+          <%= link_to current_user do %>
+            <i class="far fa-user fa-2x"></i>
           <% end %>
         </li>
-        <li><%= link_to "MY PAGE", current_user %></li>
-        <li><%= link_to "ログアウト", logout_path, method: :delete %></li>
       <% else %>
         <li><%= link_to "ログイン", accounts_login_path %></li>
+        <li><%= link_to "登録", signup_path %></li>
       <% end %>
       </ul>
     </nav>

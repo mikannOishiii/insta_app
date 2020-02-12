@@ -1,4 +1,10 @@
-<%= form_tag explore_path, method: :get do %>
-  <%= text_field_tag :explore, params[:explore] %>
-  <%= submit_tag 'Explore', class: "btn", name: nil %>
-<% end %>
+<div class="form-horizontal form_search" role="form">
+  <%= form_tag explore_path, method: :get do %>
+    <div class="col-xs-2">
+      <%= text_field_tag :explore, params[:explore], class: "form-control", placeholder: "検索" %>
+    </div>
+    <div class="col-xs-1">
+      <%= submit_tag 'Explore', class: "btn btn-secondary", name: nil %>
+    </div>
+  <% end %>
+</div>

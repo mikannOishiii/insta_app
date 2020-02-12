@@ -1,7 +1,7 @@
 module ApplicationHelper
   # ページごとの完全なタイトルを返します。
   def full_title(page_title = '')
-    base_title = "mikanntarohのInsta App"
+    base_title = "みかん太郎のInsta App"
     if page_title.empty?
       base_title
     else
