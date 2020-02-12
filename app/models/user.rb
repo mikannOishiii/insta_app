@@ -1,9 +1,19 @@
 class User < ApplicationRecord
+  has_many :active_notifications, class_name: 'Notification', 
+                                  foreign_key: 'visitor_id', 
+                                  dependent: :destroy
+  has_many :passive_notifications, class_name: 'Notification', 
+                                   foreign_key: 'visited_id', 
+                                   dependent: :destroy
+  has_many :following_notice, through: :active_notifications, source: :visited
+  has_many :follower_notice, through: :passive_notifications, source: :visitor
   has_many :comments, dependent: :destroy
+  has_many :comment_notice, through: :passive_notifications, source: :post
   # favorites
   has_many :posts, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :fav_lists, through: :favorites, source: :post
+  has_many :favorite_notice, through: :passive_notifications, source: :post
   has_many :active_relationships, class_name:  "Relationship",
                                   foreign_key: "follower_id",
                                   dependent:   :destroy
@@ -72,6 +82,17 @@ class User < ApplicationRecord
     following.include?(other_user)
   end
 
+  def create_notification_follow(current_user)
+    temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ? ",current_user.id, id, 'follow'])
+    if temp.blank?
+      notification = current_user.active_notifications.new(
+        visited_id: id,
+        action: 'follow'
+      )
+      notification.save if notification.valid?
+    end
+  end
+
   # 投稿をお気に入りする
   def like(post)
     favorites.create(post_id: post.id)
@@ -86,4 +107,26 @@ class User < ApplicationRecord
   def like?(post)
     fav_lists.include?(post)
   end
+
+  # フォローしていたらtrueを返す
+  def following_notice?(other_user)
+    following_notice.include?(other_user)
+  end
+
+  # フォローされていたらtrueを返す
+  def follower_notice?(other_user)
+    follower_notice.include?(other_user)
+  end
+
+  # お気に入りの通知があればtrueを返す
+  def favorite_notice?(post)
+    favorite_notice.include?(post)
+  end
+
+  # お気に入りの通知があればtrueを返す
+  def comment_notice?(post)
+    comment_notice.include?(post)
+  end
+
+  
 end

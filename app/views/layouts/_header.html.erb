@@ -5,7 +5,11 @@
       <ul class="nav navbar-nav navbar-right">
       <% if logged_in? %>
         <li><%= render 'layouts/explore_form' %></li>
-        <li><%= link_to "Activity", '#' %></li>
+        <li><%= link_to '通知', notifications_path, class:"btn"  %>
+          <% if unchecked_notifications.any? %>
+            <i class="fa fa-circle notification-circle"></i>
+          <% end %>
+        </li>
         <li><%= link_to "MY PAGE", current_user %></li>
         <li><%= link_to "ログアウト", logout_path, method: :delete %></li>
       <% else %>

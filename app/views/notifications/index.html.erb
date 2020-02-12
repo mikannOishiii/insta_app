@@ -1,0 +1,13 @@
+<% provide(:title, "お知らせ画面") %>
+<% if notification_on? %>
+  <% @notifications = @notifications.where.not(visitor_id: current_user.id) %>
+  <% if @notifications.exists? %>
+    <ol class="notification">
+      <%= render @notifications %>
+    </ol>
+    <%= will_paginate @notifications %>
+  <% end %>
+<% else%>
+  <%= link_to "プロフィール編集画面", edit_user_path(@user) %>から、「お知らせを受け取る」にすると、お知らせを受け取ることができます。
+
+<% end %>

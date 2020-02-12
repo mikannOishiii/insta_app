@@ -28,4 +28,6 @@ Rails.application.routes.draw do
   resources :favorites, only: [:create, :destroy]
 
   get '/explore', to: 'posts#explore'
+
+  resources :notifications, only: [:index]
 end

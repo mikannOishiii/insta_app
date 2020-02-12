@@ -105,4 +105,12 @@ class UserTest < ActiveSupport::TestCase
       malory.destroy
     end
   end
+
+  test "should notification and follow a user" do
+    michael = users(:michael)
+    archer  = users(:archer)
+    michael.follow(archer)
+    archer.create_notification_follow(michael)
+    assert archer.follower_notice.include?(michael)
+  end
 end

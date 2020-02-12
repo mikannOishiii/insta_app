@@ -78,7 +78,7 @@ class UsersController < ApplicationController
 
     def profile_params
       params.require(:user).permit(:name, :user_name, :website, :pr_text,
-                                   :email, :phone, :gender)
+                                   :email, :phone, :gender, :notification)
     end
 
     def password_params

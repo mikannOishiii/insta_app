@@ -34,6 +34,9 @@
       <%= f.label :gender %>
       <%= f.select :gender, [["男性", "男性"], ["女性", "女性"],  ["答えたくない", "答えたくない"] ],
                     :prompt => "選択してください", class: 'form-control' %>
+      
+      <%= f.label :notification %>
+      お知らせを受け取る<%= f.check_box :notification, {}, 'true', 'false' %>
     
 
       <%= f.submit "送信する", class: "btn btn-primary" %>
