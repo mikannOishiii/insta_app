@@ -10,19 +10,21 @@
   <div class="content_img"><%= image_tag post.picture.url, class: "feed_img" %></div>
   <div class="content_info">
     <div class="content_info_icons">
-      <%= link_to post_path(post) do %>
-        <i class="far fa-comment fa-2x fa-black"></i>
-      <% end %>
-      <%= link_to post_path(post) do %>
-        <i class="far fa-bookmark fa-2x fa-black"></i>
-      <% end %>
+      <span class="icon_comment">
+        <%= link_to post_path(post) do %>
+          <i class="far fa-comment fa-2x fa-black"></i>コメント
+        <% end %>
+      </span>
+      <span class="icon_favorite">
+        <%= render 'users/favorite', post: post %>
+      </span>
     </div>
     <div class="content_info_caption">
       <%= post.text if post.text? %>
     </div>
     <div class="content_info_time">
       <span class="timestamp">
-        Posted <%= time_ago_in_words(post.created_at) %> ago.
+        <%= time_ago_in_words(post.created_at) %>前
         <% if current_user?(post.user) %>
           <%= link_to "delete", post, method: :delete,
                                     data: { confirm: "本当に削除しますか?" } %>
@@ -30,9 +32,6 @@
       </span>
     </div>
   </div>
-  <section class="favorite">
-    <%= render 'users/favorite', post: post %>
-  </section>
 </article>
 
 

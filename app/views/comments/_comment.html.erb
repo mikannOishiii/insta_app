@@ -1,14 +1,20 @@
 <li id="comment-<%= comment.id %>">
-  <%= link_to gravatar_for(comment.user, size: 50), comment.user %>
-  <span class="user"><%= link_to comment.user.name, comment.user %></span>
-  <span class="content"><%= comment.content %></span>
-  <span class="timestamp">
-    Posted <%= time_ago_in_words(comment.created_at) %> ago.
-  </span>
-  <% if current_user?(comment.user) %>
-      <%= link_to "delete",
-          post_comment_path(comment.post, comment), 
-          method: :delete,
-          data: { confirm: 'Are you sure?' } %>
-    <% end %>
+  <div class="content_user_comment">
+    <div class="comment_user_icon">
+      <%= link_to gravatar_for(comment.user, size: 32), comment.user %>
+    </div>
+    <div class="comment_contents text-left">
+      <h3 class="comment_user_name"><%= link_to comment.user.name, comment.user %></h2>
+      <span class="comment_user_text"><%= comment.content %></span>
+      <span class="timestamp">
+        <%= time_ago_in_words(comment.created_at) %>前
+      </span>
+      <% if current_user?(comment.user) %>
+        <%= link_to "delete",
+            post_comment_path(comment.post, comment), 
+            method: :delete,
+            data: { confirm: 'Are you sure?' } %>
+      <% end %>
+    </div>
+  </div>   
 </li>

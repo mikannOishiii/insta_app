@@ -6,6 +6,7 @@ class PostsController < ApplicationController
     @user = Post.find(params[:id]).user
     @post = @user.posts.find(params[:id])
     @comments = @post.comments.paginate(page: params[:page])
+    @comment = current_user.comments.build
   end
 
   def new
