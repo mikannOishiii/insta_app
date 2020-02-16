@@ -1,14 +1,7 @@
-<li id="post-<%= post.id %>">
-  <span class="content_img"><%= image_tag post.picture.url %></span>
-  <span class="content_text"><%= post.text if post.text? %></span>
-  <span class="timestamp">
-    Posted <%= time_ago_in_words(post.created_at) %> ago.
-    <% if current_user?(post.user) %>
-      <%= link_to "delete", post, method: :delete,
-                                    data: { confirm: "本当に削除しますか?" } %>
+<div id="post-<%= post.id %>", class="col-sm-4 mb-28" >
+  <div class="post">
+    <%= link_to post_path(post), remote: true do %>
+      <%= image_tag post.picture.url, class: "post_img" %>
     <% end %>
-  </span>
-  <section class="favorite">
-    <%= render 'users/favorite', post: post %>
-  </section>
-</li>
+  </div>
+</div>

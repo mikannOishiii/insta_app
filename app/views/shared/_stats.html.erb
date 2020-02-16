@@ -1,11 +1,6 @@
 <% @user ||= current_user %>
-<div class="stats">
-  <strong id="following" class="stat">
-    <%= @user.following.count %>
-  </strong>
-  following
-  <strong id="followers" class="stat">
-    <%= @user.followers.count %>
-  </strong>
-  followers
-</div>
+<ul class="user_stats">
+  <li class="stats_list">投稿<strong id="posting" class="stat"><%= @user.posts.count %></strong>件</li>
+  <li class="stats_list">フォロワー<strong id="followers" class="stat"><%= @user.followers.count %></strong>人</li>
+  <li class="stats_list">フォロー中<strong id="following" class="stat"><%= @user.following.count %></strong>人</li>
+</ul>

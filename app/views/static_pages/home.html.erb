@@ -1,29 +1,44 @@
-<% if logged_in? %>
-  <section class="user_post_link">
-  <%= link_to "画像を投稿する", create_path %>
-  </section>
-  <section class="user_info">
-    <%= render 'shared/user_info' %>
-  </section>
-  <section class="stats">
-    <%= render 'shared/stats' %>
-  </section>
-  <%# <section class="post_form">
-    <%= render 'shared/post_form' %>
-  <%# </section> %>
-  <section class="feed">
-    <h3>Micropost Feed</h3>
-    <%= render 'shared/feed'%>
-  </section>
-<% else %>
-  <div class="center jumbotron">
-    <h1>Welcome to the Sample App</h1>
-    <h2>
-      This is the home page for the
-      <a href="https://railstutorial.jp/">Ruby on Rails Tutorial</a>
-      sample application.
-    </h2>
-    <%= link_to "Sign up now!", '#', class: "btn btn-lg btn-primary" %>
-  </div>
-  <%= link_to "Facebookでログイン", user_facebook_omniauth_authorize_path %>
-<% end %>
+<section class="main_section">
+  
+  <% if logged_in? %>
+    <div class="feed">
+      <% if @feed_items.any? %>
+        <% @feed_items.each do |post|%>
+          <%= render 'posts/feed_item', post: post %>
+        <% end %>
+      <% end %>
+      <%= will_paginate @feed_items %>
+    </div>
+    <div class="side_contents">
+      <div class="sidebar-nav affix" role="complementary">
+        <div class="side_user_info">
+          <div class="side_user_icon">
+            <%= link_to gravatar_for(current_user, size: 60), current_user %>
+          </div>
+          <div class="side_user_account">
+            <div class="side_user_username">
+              <%= link_to "#{current_user.user_name}", current_user %>
+            </div>
+          <div class="side_user_name"><%= current_user.name %></div>
+        </div>
+        <div class="user_post_link">
+          <%= link_to "画像を投稿する", create_path %>
+        </div>
+      </div>
+    </div>
+    <%# <section class="post_form">
+      <%= render 'shared/post_form' %>
+    <%# </section> %>
+  <% else %>
+    <div class="center jumbotron">
+      <h1>Welcome to the Sample App</h1>
+      <h2>
+        This is the home page for the
+        <a href="https://railstutorial.jp/">Ruby on Rails Tutorial</a>
+        sample application.
+      </h2>
+      <%= link_to "Sign up now!", '#', class: "btn btn-lg btn-primary" %>
+    </div>
+    <%= link_to "Facebookでログイン", user_facebook_omniauth_authorize_path %>
+  <% end %>
+</section>

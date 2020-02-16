@@ -12,7 +12,7 @@ class FavoriteIngTest < ActionDispatch::IntegrationTest
     assert_not @user.fav_lists.empty?
     assert_match @user.fav_lists.count.to_s, response.body
     @user.fav_lists.each do |post|
-      assert_select "li#post-#{post.id}"
+      assert_select "div#post-#{post.id}"
     end
   end
 

@@ -3,12 +3,16 @@
     <%= form_for(current_user.favorites.find_by(post_id: post.id), 
              html: { method: :delete },
              remote: true) do |f| %>
-      <%= f.submit "お気に入りを解除する", class: "btn" %>
+      <%= button_tag type: :submit, class: "btn btn default", remote: true do %>
+        <i class="fas fa-bookmark fa-2x fa-black"></i>お気に入り解除
+      <% end %>
     <% end %>
   <% else %>
     <%= form_for(current_user.favorites.build, remote: true) do |f| %>
       <div><%= hidden_field_tag :post_id, post.id %></div>
-      <%= f.submit "お気に入りに登録する", class: "btn btn-primary" %>
+      <%= button_tag type: :submit, class: "btn btn default", remote: true do %>
+        <i class="far fa-bookmark fa-2x fa-black"></i>お気に入り登録
+      <% end %>
     <% end %>
   <% end %>
 </div>

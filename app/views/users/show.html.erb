@@ -1,23 +1,37 @@
 <% provide(:title, @user.name) %>
 <section class="user_info">
-  <h1>
-    <%= gravatar_for @user %>
-    <%= @user.user_name %>
-  </h1>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="user_icon_area">
+          <span class="user_icon">
+            <%= gravatar_for @user, size: 150 %>
+          </span>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="name_area clearfix">
+          <h1 class="h1_user_name"><%= @user.user_name %></h1>
+          <%= render 'follow_form' if logged_in? %>
+        </div>
+        <%= render 'shared/stats' %>
+        <div class="user_pr_text">
+          <%= @user.pr_text %>
+        </div>
+        <div class="user_pr_text">
+          <%= link_to "#{@user.website}", @user.website %>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
-<section class="stats">
-  <%= render 'shared/stats' %>
-</section>
-<%# <section class="favlists">
-  <a href="<%= fav_lists_user_path(@user) %>
-<%# </section> %> 
-<%= render 'follow_form' if logged_in? %>
 <section class="photoline">
-  <% if @user.posts.any? %>
-    <h3>Posts (<%= @user.posts.count %>)</h3>
-    <ol class="posts">
-      <%= render @posts %>
-    </ol>
-    <%= will_paginate @posts %>
-  <% end %>
+  <div class="container">
+    <% if @user.posts.any? %>
+      <div class="posts">
+        <%= render @posts %>
+      </div>
+      <%= will_paginate @posts %>
+    <% end %>
+  </div>
 </section>
