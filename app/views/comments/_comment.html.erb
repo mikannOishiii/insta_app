@@ -13,7 +13,8 @@
         <%= link_to "delete",
             post_comment_path(comment.post, comment), 
             method: :delete,
-            data: { confirm: 'Are you sure?' } %>
+            remote: true,
+            data: { confirm: '本当に削除しますか?' } %>
       <% end %>
     </div>
   </div>   

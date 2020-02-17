@@ -23,4 +23,17 @@ class CommentTest < ActiveSupport::TestCase
     @comment.user_id = nil
     assert_not @comment.valid?
   end
+
+  test "content should be present" do
+    @comment.content = "   "
+    assert_not @comment.valid?
+  end
+
+  test "associated comment should be destroyed" do
+    @user.save
+    @user.comments.create!(content: "Lorem ipsum", post_id: @post.id)
+    assert_difference 'Comment.count', -6 do
+      @user.destroy
+    end
+  end
 end

@@ -1,6 +1,5 @@
 <% if current_user?(@user) %>
   <%= link_to "プロフィールを編集", edit_user_path, class: "btn btn-default" %>
-  <span class="icon_config"><i class="fa fa-cog fa-2x"></i></span>
 <% else %>
   <div id="follow_form">
     <% if current_user.following?(@user) %>

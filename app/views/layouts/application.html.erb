@@ -20,7 +20,6 @@
           <div class="alert alert-<%= message_type %>"><%= message %></div>
         <% end %>
         <%= yield %>
-        <%= render 'layouts/footer' %>
         <% if logged_in? %>
           <%= link_to "ログアウト", logout_path, method: :delete, data: { confirm: "ログアウトしますか?" } %>
         <% end %>

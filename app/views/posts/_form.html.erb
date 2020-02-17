@@ -1,5 +1,55 @@
-<div class="modal-dialog">
+<div class="modal-dialog modal-lg">
   <div class="modal-content">
-   ...
+  <div class="row">
+    <div class="modal_container">
+      <header class="modal_user">
+        <div class="content_user_icon">
+          <%= link_to gravatar_for(@post.user, size: 32), @post.user %>
+        </div>
+        <div class="comment_contents text-left">
+          <h2 class="comment_user_name">
+            <%= link_to "#{@post.user.name}", user_path(@post.user) %>
+          </h2>
+        </div>
+      </header>
+      <div class="modal_main">
+        <%= image_tag @post.picture, class: "post_picture" %>
+      </div>
+      <div class="modal_side">
+        <div class="comments">
+          <div class="content_user_comment">
+            <div class="comment_user_icon">
+              <%= link_to gravatar_for(@post.user, size: 32), @post.user %>
+            </div>     
+            <div class="comment_contents text-left">
+              <h2 class="comment_user_name">
+                <%= link_to "#{@post.user.name}", user_path(@post.user) %>
+              </h2>
+              <span class="comment_user_text">
+                <%= @post.text if @post.text? %>
+              </span>
+              <span class="timestamp">
+              Posted <%= time_ago_in_words(@post.created_at) %> 前
+              </span>
+              <% if current_user?(@post.user) %>
+                <%= link_to "delete", @post, method: :delete,
+                                            data: { confirm: "本当に削除しますか?" } %>
+              <% end %>
+            </div>
+          </div>
+        <% if @post.comments.any? %>
+            <%= render @comments %>
+          </div>
+        <% end %>
+        <div class="timaestamp">
+          <%= time_ago_in_words(@post.created_at) %>前
+        </div>
+        <section class="comment_form">
+          <%= render 'comments/comment_form', post: @post %>
+      </section>
+      </div>
+      </div>
+    </div>
   </div>
+</div>
 </div>

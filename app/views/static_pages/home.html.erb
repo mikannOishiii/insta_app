@@ -30,15 +30,12 @@
       <%= render 'shared/post_form' %>
     <%# </section> %>
   <% else %>
-    <div class="center jumbotron">
-      <h1>Welcome to the Sample App</h1>
-      <h2>
-        This is the home page for the
-        <a href="https://railstutorial.jp/">Ruby on Rails Tutorial</a>
-        sample application.
-      </h2>
-      <%= link_to "Sign up now!", '#', class: "btn btn-lg btn-primary" %>
+    <div class="login_form text-center">
+      <div class="content_title">
+        みかん太郎の</br>Insta App
+      </div>
+    <%= link_to "Facebookでログイン", user_facebook_omniauth_authorize_path, class: "btn btn-primary" %>
+    <p>アカウントをお持ちでないですか？<%= link_to "登録する", accounts_signup_path %></p>
     </div>
-    <%= link_to "Facebookでログイン", user_facebook_omniauth_authorize_path %>
   <% end %>
 </section>

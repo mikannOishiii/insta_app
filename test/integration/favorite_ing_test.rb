@@ -36,11 +36,11 @@ class FavoriteIngTest < ActionDispatch::IntegrationTest
     end
   end
 
-  # test "should unlike a post with Ajax" do
-  #   @user.unlike(@post)
-  #   favorite = @user.favorites.find_by(post_id: @post.id)
-  #   assert_difference '@user.favorites.count', -1 do
-  #     delete favorite_path(favorite), xhr: true
-  #   end
-  # end
+  test "should unlike a post with Ajax" do
+    @user.like(@post)
+    favorite = @user.favorites.find_by(post_id: @post.id)
+    assert_difference '@user.favorites.count', -1 do
+      delete favorite_path(favorite), xhr: true
+    end
+  end
 end

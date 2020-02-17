@@ -9,24 +9,37 @@ class CommentsController < ApplicationController
   end
 
   def create
-    post = Post.find(params[:post_id])
-    @comment = post.comments.build(comment_params) 
+    @post = Post.find(params[:post_id])
+    @comment = @post.comments.build(comment_params) 
     @comment.user_id = current_user.id
+    @comments = @post.comments.all
     if @comment.save
-      post.create_notification_comment(current_user, @comment.id)
+      @post.create_notification_comment(current_user, @comment.id)
       flash[:success] = "comment created!"
-      redirect_back(fallback_location: root_path)
+      @comment.content = ""
+      respond_to do |format|
+        format.html { redirect_back(fallback_location: root_path) }
+        format.js
+      end
     else
-      redirect_back(fallback_location: root_path)
+      respond_to do |format|
+        format.html { redirect_back(fallback_location: root_path) }
+        format.js
+      end
     end
   end
 
   def destroy
+    @post = Post.find(params[:post_id])
+    @comments = @post.comments.all
     # Comment.find_by(post_id: params[:post_id]).destroy
     @comment = Comment.find_by(post_id: params[:post_id], id:params[:id])
     @comment.destroy
     flash[:success] = "Micropost deleted"
-    redirect_back(fallback_location: root_path)
+    respond_to do |format|
+      format.html { redirect_back(fallback_location: root_path) }
+      format.js
+    end
   end
 
   private

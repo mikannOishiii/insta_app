@@ -5,6 +5,7 @@
     <ul>
       <li><%= link_to "プロフィールを編集", edit_user_path %></li>
       <li><%= link_to "パスワードを変更", accounts_password_change_path %></li>
+      <li><%= link_to "ログアウト", logout_path, method: :delete, data: { confirm: "ログアウトしますか?" } %></li>
       <li><%= link_to "アカウント停止", @user, method: :delete,
                                 data: { confirm: "本当に削除しますか?" } %> </li>
     </ul>
