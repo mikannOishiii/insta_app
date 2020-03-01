@@ -20,8 +20,16 @@ module InstaApp
 
     # 表示TimeZone
     config.time_zone = 'Tokyo'
-    
+
     # DB読み書きをlocal(Tokyo)にする
     config.active_record.default_timezone = :local
+
+    # RSpec設定
+    config.generators do |g|
+      g.test_framework :rspec,
+        view_specs: false,
+        helper_specs: false,
+        routing_specs: false
+    end
   end
 end
