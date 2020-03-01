@@ -6,20 +6,20 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     @user = users(:michael)
   end
 
-  test "login with invalid information" do 
+  test "login with invalid information" do
     get accounts_login_path
     assert_template 'sessions/new'
-    post login_path, params: { session: { user_name: "", password: "" } }
+    post accounts_login_path, params: { session: { user_name: "", password: "" } }
     assert_template 'sessions/new'
     assert_not flash.empty?
     get root_path
     assert flash.empty?
   end
 
-  test "login with valid information" do 
+  test "login with valid information" do
     get accounts_login_path
     assert_template 'sessions/new'
-    post login_path, params: { session: { user_name: @user.user_name, password: "password" } }
+    post accounts_login_path, params: { session: { user_name: @user.user_name, password: "password" } }
     assert is_logged_in?
     assert_redirected_to @user
     follow_redirect!
@@ -34,5 +34,5 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     assert_select "a[href=?]", user_path(@user), count: 0
   end
 
-  
+
 end
