@@ -21,7 +21,7 @@
         <% end %>
         <%= yield %>
         <% if logged_in? %>
-          <%= link_to "ログアウト", logout_path, method: :delete, data: { confirm: "ログアウトしますか?" } %>
+          <%= link_to "ログアウトする", logout_path, method: :delete, data: { confirm: "ログアウトしますか?" } %>
         <% end %>
         <%= debug(params) if Rails.env.development? %>
       </div>

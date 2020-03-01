@@ -21,7 +21,7 @@
       </div>
     </div>
     <div class="form-horizontal" role="form">
-      <%= form_for @user, html: { class: "form_user_edit" } do |f| %>
+      <%= form_for@user, html: { class: "form_user_edit" } do |f| %>
         <%= render 'shared/error_messages', object: f.object %>
         <div class="form-group">
           <div class="col-xs-3 text-right"><%= f.label :user_name %></div>

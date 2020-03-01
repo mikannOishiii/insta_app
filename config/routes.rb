@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     end
   end
   get    '/accounts/login',   to: 'sessions#new'
-  post   '/login',   to: 'sessions#create'
+  post   '/accounts/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
 
   get  '/accounts/password/change',  to: 'users#password_change'
